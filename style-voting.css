@@ -1,0 +1,58 @@
+/* VOTE PAGE STYLE */
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap');
+
+body {
+  background: #0d1117;
+  font-family: 'Segoe UI', sans-serif;
+  color: #dcdcdc;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 70px auto;
+  padding: 30px;
+  background: #1a1f2b;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(135, 206, 250, 0.2);
+  border: 1px solid #333c4d;
+  text-align: center;
+}
+
+h1 {
+  font-size: 26px;
+  color: #add8e6;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  color: #ccc;
+}
+
+select {
+  width: 90%;
+  padding: 10px;
+  border-radius: 10px;
+  background: #0a0f1a;
+  color: #e0e0e0;
+  border: 1px solid #2e3a59;
+}
+
+button {
+  margin-top: 20px;
+  background: #4682b4;
+  color: #fff;
+  padding: 10px 25px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #4169e1;
+}
