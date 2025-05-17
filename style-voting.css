@@ -1,14 +1,11 @@
-/* Reset some defaults */
-* {
-  box-sizing: border-box;
+/* VOTING PAGE STYLE */
+body {
   margin: 0;
   padding: 0;
+  background: #0d1117;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
-  background: #121212; /* Dark background for cool vibe */
-  color: #eee;
+  color: #e0e0e0;
+  overflow-x: hidden;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -17,31 +14,36 @@ body {
 }
 
 .container {
-  background: #1e1e1e;
-  padding: 30px 40px;
-  border-radius: 12px;
-  max-width: 450px;
-  width: 100%;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  max-width: 500px;
+  margin: 20px auto;
+  background: #161b22;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(100, 149, 237, 0.2);
+  border: 1px solid #2e3a59;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 h1 {
-  font-size: 2rem;
-  margin-bottom: 30px;
-  letter-spacing: 1.2px;
-  color: #f0a500; /* warm gold/yellow accent */
+  font-size: 28px;
+  color: #b0c4de;
+  text-transform: uppercase;
+  margin-bottom: 25px;
 }
 
 #nomineeList {
   list-style: none;
   max-height: 350px;
   overflow-y: auto;
-  padding-right: 5px;
+  padding: 0;
+  margin: 0 auto 20px;
+  width: 100%;
 }
 
 #nomineeList li {
-  background: #292929;
+  background: #0a0f1a;
   margin-bottom: 15px;
   padding: 15px 20px;
   border-radius: 10px;
@@ -50,33 +52,33 @@ h1 {
   align-items: center;
   font-weight: 600;
   font-size: 1.05rem;
-  color: #ddd;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  color: #e0e0e0;
+  border: 1px solid #2e3a59;
+  box-shadow: 0 0 10px rgba(30, 144, 255, 0.3);
 }
 
 button.vote-btn {
-  background-color: #f0a500;
+  padding: 10px 20px;
+  background: #1e90ff;
   border: none;
-  color: #121212;
-  padding: 10px 18px;
-  border-radius: 25px;
-  font-weight: 700;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 10px rgba(240, 165, 0, 0.6);
+  transition: background 0.3s ease;
+  box-shadow: 0 0 15px rgba(30, 144, 255, 0.6);
 }
 
 button.vote-btn:hover:not(:disabled) {
-  background-color: #cf8700;
-  transform: scale(1.05);
+  background: #1c86ee;
+  box-shadow: 0 0 20px rgba(28, 134, 238, 0.8);
 }
 
 button.vote-btn:disabled {
-  background-color: #555;
+  background: #444;
   color: #aaa;
   cursor: not-allowed;
   box-shadow: none;
-  transform: none;
 }
 
 ::-webkit-scrollbar {
@@ -84,14 +86,15 @@ button.vote-btn:disabled {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1e1e1e;
+  background: #161b22;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #f0a500;
+  background-color: #1e90ff;
   border-radius: 10px;
 }
+
 
 
 
