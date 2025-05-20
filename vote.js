@@ -1,5 +1,5 @@
 // ✅ 1. Set current game name here — change this for every new game
-const gameName = 'handsome'; // eg: 'crush', 'handsome', 'funny', etc.
+const gameName = 'crush'; // eg: 'crush', 'handsome', 'funny', etc.
 
 // ✅ 2. Load nominees and handle vote status per game
 function loadNominees() {
@@ -34,7 +34,11 @@ function loadNominees() {
           voteBtn.style.backgroundColor = '#555';
           voteBtn.style.cursor = 'not-allowed';
         } else {
-          voteBtn.onclick = () => voteForNominee(doc.id);
+          voteBtn.onclick = function () {
+            voteBtn.disabled = true; // prevent double-click
+            voteBtn.textContent = 'Submitting...';
+            voteForNominee(doc.id, voteBtn); // pass button to control UI
+          };
         }
 
         li.appendChild(voteBtn);
@@ -48,7 +52,7 @@ function loadNominees() {
 }
 
 // ✅ 3. Voting logic with per-game key
-function voteForNominee(nomineeId) {
+function voteForNominee(nomineeId, voteBtn) {
   const nomineeRef = db.collection('nominations').doc(nomineeId);
 
   db.runTransaction((transaction) => {
@@ -67,12 +71,18 @@ function voteForNominee(nomineeId) {
     // ✅ save vote status for current game only
     localStorage.setItem(`hasVoted_${gameName}`, 'true');
 
-    // Disable all buttons
+    // Disable all buttons to prevent further voting
     disableVoteButtons();
   })
   .catch((error) => {
     console.error("Voting failed: ", error);
     alert("Error while voting. Please try again.");
+
+    // Re-enable the button if something goes wrong
+    if (voteBtn) {
+      voteBtn.disabled = false;
+      voteBtn.textContent = 'Vote';
+    }
   });
 }
 
@@ -89,5 +99,6 @@ function disableVoteButtons() {
 
 // ✅ 5. Load nominees on page load
 window.onload = loadNominees;
+
 
 
