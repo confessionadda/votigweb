@@ -1,3 +1,7 @@
+// ✅ 1. Set current game name here — change this for every new game
+const gameName = 'crush'; // eg: 'crush', 'handsome', 'funny', etc.
+
+// ✅ 2. Load nominees and handle vote status per game
 function loadNominees() {
   const nomineeList = document.getElementById('nomineeList');
   nomineeList.innerHTML = '<li>Loading nominees...</li>';
@@ -11,7 +15,8 @@ function loadNominees() {
         return;
       }
 
-      const hasVoted = localStorage.getItem('hasVoted');
+      // ✅ check if already voted for this game
+      const hasVoted = localStorage.getItem(`hasVoted_${gameName}`);
 
       querySnapshot.forEach((doc) => {
         const data = doc.data();
@@ -42,6 +47,7 @@ function loadNominees() {
     });
 }
 
+// ✅ 3. Voting logic with per-game key
 function voteForNominee(nomineeId) {
   const nomineeRef = db.collection('nominations').doc(nomineeId);
 
@@ -58,10 +64,10 @@ function voteForNominee(nomineeId) {
   .then((newVotes) => {
     alert(`Thank you for voting! This nominee now has ${newVotes} votes.`);
 
-    // Mark as voted in localStorage
-    localStorage.setItem('hasVoted', 'true');
+    // ✅ save vote status for current game only
+    localStorage.setItem(`hasVoted_${gameName}`, 'true');
 
-    // Disable all vote buttons now
+    // Disable all buttons
     disableVoteButtons();
   })
   .catch((error) => {
@@ -70,6 +76,7 @@ function voteForNominee(nomineeId) {
   });
 }
 
+// ✅ 4. Disable all vote buttons
 function disableVoteButtons() {
   const buttons = document.querySelectorAll('button.vote-btn');
   buttons.forEach(btn => {
@@ -80,5 +87,7 @@ function disableVoteButtons() {
   });
 }
 
+// ✅ 5. Load nominees on page load
 window.onload = loadNominees;
+
 
