@@ -1,7 +1,7 @@
-// ✅ 1. Set current game name here — change this for every new game
-const gameName = 'crush'; // eg: 'crush', 'handsome', 'funny', etc.
 
-// ✅ 2. Load nominees and handle vote status per game
+const gameName = 'crush'; 
+
+
 function loadNominees() {
   const nomineeList = document.getElementById('nomineeList');
   nomineeList.innerHTML = '<li>Loading nominees...</li>';
@@ -15,7 +15,6 @@ function loadNominees() {
         return;
       }
 
-      // ✅ check if already voted for this game
       const hasVoted = localStorage.getItem(`hasVoted_${gameName}`);
 
       querySnapshot.forEach((doc) => {
@@ -35,9 +34,9 @@ function loadNominees() {
           voteBtn.style.cursor = 'not-allowed';
         } else {
           voteBtn.onclick = function () {
-            voteBtn.disabled = true; // prevent double-click
+            voteBtn.disabled = true; 
             voteBtn.textContent = 'Submitting...';
-            voteForNominee(doc.id, voteBtn); // pass button to control UI
+            voteForNominee(doc.id, voteBtn); 
           };
         }
 
@@ -51,7 +50,7 @@ function loadNominees() {
     });
 }
 
-// ✅ 3. Voting logic with per-game key
+
 function voteForNominee(nomineeId, voteBtn) {
   const nomineeRef = db.collection('nominations').doc(nomineeId);
 
@@ -68,17 +67,17 @@ function voteForNominee(nomineeId, voteBtn) {
   .then((newVotes) => {
     alert(`Thank you for voting! This nominee now has ${newVotes} votes.`);
 
-    // ✅ save vote status for current game only
+   
     localStorage.setItem(`hasVoted_${gameName}`, 'true');
 
-    // Disable all buttons to prevent further voting
+   
     disableVoteButtons();
   })
   .catch((error) => {
     console.error("Voting failed: ", error);
     alert("Error while voting. Please try again.");
 
-    // Re-enable the button if something goes wrong
+    
     if (voteBtn) {
       voteBtn.disabled = false;
       voteBtn.textContent = 'Vote';
@@ -86,7 +85,7 @@ function voteForNominee(nomineeId, voteBtn) {
   });
 }
 
-// ✅ 4. Disable all vote buttons
+
 function disableVoteButtons() {
   const buttons = document.querySelectorAll('button.vote-btn');
   buttons.forEach(btn => {
@@ -97,7 +96,7 @@ function disableVoteButtons() {
   });
 }
 
-// ✅ 5. Load nominees on page load
+
 window.onload = loadNominees;
 
 
