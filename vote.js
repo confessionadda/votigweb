@@ -1,5 +1,5 @@
 // ✅ 1. Set current game name here — change this for every new game
-const gameName = 'crush'; // eg: 'crush', 'handsome', 'funny', etc.
+const gameName = 'smart'; // eg: 'crush', 'handsome', 'funny', etc.
 
 // ✅ 2. Load nominees and handle vote status per game
 function loadNominees() {
